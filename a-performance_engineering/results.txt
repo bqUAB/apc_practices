@@ -1,0 +1,37 @@
+**********************
+** No modifications **
+**********************
+
+*********
+** gcc **
+*********
+
+acpM-1-3@aolin15:~/Documentos$ perf stat -e cycles,instructions,cache-misses,task-clock ./LapG 2048 100
+Jacobi relaxation Calculation: 2048 x 2048 mesh, maximum of 100 iterations
+Total Iterations:   100, ERROR: 0.049206, A[16][16]= 0.000583
+
+ Performance counter stats for './LapG 2048 100':
+
+   101.881.824.914      cycles                    #    3,273 GHz                    
+    11.527.054.607      instructions              #    0,11  insns per cycle        
+     2.563.243.158      cache-misses              #   82,355 M/sec                  
+      31124,269927      task-clock (msec)         #    0,998 CPUs utilized          
+
+      31,182496604 seconds time elapsed
+
+*********
+** icc **
+*********
+acpM-1-3@aolin15:~/Documentos$ perf stat -e cycles,instructions,cache-misses,task-clock ./LapI 2048 100
+Jacobi relaxation Calculation: 2048 x 2048 mesh, maximum of 100 iterations
+Total Iterations:   100, ERROR: 0.049207, A[16][16]= 0.000583
+
+ Performance counter stats for './LapI 2048 100':
+
+    72.098.328.374      cycles                    #    3,339 GHz                    
+     9.371.007.446      instructions              #    0,13  insns per cycle        
+     1.782.008.694      cache-misses              #   82,525 M/sec                  
+      21593,441872      task-clock (msec)         #    0,998 CPUs utilized          
+
+      21,635381932 seconds time elapsed
+
