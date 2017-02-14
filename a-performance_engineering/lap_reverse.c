@@ -10,7 +10,7 @@ float stencil ( float v1, float v2, float v3, float v4)
 
 float max_error ( float prev_error, float old, float new )
 {
-  float t= fabsf( new - old );
+  float t= sqrtf( fabsf( new - old ) );
   if (t> prev_error)
     return t;
   return prev_error;
@@ -28,12 +28,9 @@ float laplace_error (float *old, float *new, int n)
 {
   int i, j;
   float error=0.0f;
-  for ( i=1; i < n-1; i++ ){
-    for ( j=1; j < n-1; j++ ){
+  for ( i=1; i < n-1; i++ )
+    for ( j=1; j < n-1; j++ )
       error = max_error( error, old[j*n+i], new[j*n+i] );
-    }
-  }
-  error = sqrtf(error);
   return error;
 }
 
@@ -84,10 +81,17 @@ int main(int argc, char** argv)
   int iter = 0;
   while ( error > tol && iter < iter_max )
   {
+    if (iter % 1)
+    {
+       laplace_step (temp, A, n);
+       error= laplace_error (temp, A, n);
+    }
+    else
+    {
+      laplace_step (A, temp, n);
+      error= laplace_error (A, temp, n);
+    }
     iter++;
-    laplace_step (A, temp, n);
-    error= laplace_error (A, temp, n);
-    laplace_copy (temp, A, n);
   }
   printf("Total Iterations: %5d, ERROR: %0.6f, ", iter, error);
   printf("A[%d][%d]= %0.6f\n", n/128, n/128, A[(n/128)*n+n/128]);

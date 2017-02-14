@@ -5,12 +5,12 @@
 
 float stencil ( float v1, float v2, float v3, float v4)
 {
-  return (v1 + v2 + v3 + v4) / 4;
+  return (v1 + v2 + v3 + v4) * 0.25f;
 }
 
 float max_error ( float prev_error, float old, float new )
 {
-  float t= sqrtf( fabsf( new - old ) );
+  float t= fabsf( new - old );
   if (t> prev_error)
     return t;
   return prev_error;
@@ -19,8 +19,8 @@ float max_error ( float prev_error, float old, float new )
 void laplace_step(float *in, float *out, int n)
 {
   int i, j;
-  for ( i=1; i < n-1; i++ )
-    for ( j=1; j < n-1; j++ )
+  for ( j=1; j < n-1; j++ )
+    for ( i=1; i < n-1; i++ )
       out[j*n+i]= stencil(in[j*n+i+1], in[j*n+i-1], in[(j-1)*n+i], in[(j+1)*n+i]);
 }
 
@@ -28,9 +28,13 @@ float laplace_error (float *old, float *new, int n)
 {
   int i, j;
   float error=0.0f;
-  for ( i=1; i < n-1; i++ )
-    for ( j=1; j < n-1; j++ )
+  for ( i=1; i < n-1; i++ ){
+    for ( j=1; j < n-1; j++ ){
       error = max_error( error, old[j*n+i], new[j*n+i] );
+    }
+  }
+  error = sqrtf(error);
+  return error;
   return error;
 }
 
@@ -81,10 +85,17 @@ int main(int argc, char** argv)
   int iter = 0;
   while ( error > tol && iter < iter_max )
   {
+    if (iter % 1)
+    {
+       laplace_step (temp, A, n);
+       error= laplace_error (temp, A, n);
+    }
+    else
+    {
+      laplace_step (A, temp, n);
+      error= laplace_error (A, temp, n);
+    }
     iter++;
-    laplace_step (A, temp, n);
-    error= laplace_error (A, temp, n);
-    laplace_copy (temp, A, n);
   }
   printf("Total Iterations: %5d, ERROR: %0.6f, ", iter, error);
   printf("A[%d][%d]= %0.6f\n", n/128, n/128, A[(n/128)*n+n/128]);

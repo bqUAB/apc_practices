@@ -136,4 +136,75 @@ Total Iterations:   100, ERROR: 0.049207, A[16][16]= 0.000583
 
       21,032514669 seconds time elapsed
 
+**************************
+** Reverse optimization **
+**************************
+
+*********
+** gcc **
+*********
+
+Jacobi relaxation Calculation: 2048 x 2048 mesh, maximum of 100 iterations
+Total Iterations:   100, ERROR: 0.500000, A[16][16]= 0.000000
+
+ Performance counter stats for './LapReverseG 2048 100':
+
+    69.254.350.300      cycles                    #    3,368 GHz                    
+     8.977.321.645      instructions              #    0,13  insns per cycle        
+     1.774.375.228      cache-misses              #   86,286 M/sec                  
+      20563,897499      task-clock (msec)         #    0,998 CPUs utilized          
+
+      20,602162375 seconds time elapsed
+
+*********
+** icc **
+*********
+
+Jacobi relaxation Calculation: 2048 x 2048 mesh, maximum of 100 iterations
+Total Iterations:   100, ERROR: 0.500000, A[16][16]= 0.000000
+
+ Performance counter stats for './LapReverseI 2048 100':
+
+    37.801.966.195      cycles                    #    3,327 GHz                    
+     6.823.114.118      instructions              #    0,18  insns per cycle        
+       946.118.146      cache-misses              #   83,261 M/sec                  
+      11363,247358      task-clock (msec)         #    0,998 CPUs utilized          
+
+      11,387048038 seconds time elapsed
+
+*******************
+** Optimized Lap **
+*******************
+
+*********
+** gcc **
+*********
+Jacobi relaxation Calculation: 2048 x 2048 mesh, maximum of 100 iterations
+Total Iterations:   100, ERROR: 0.500000, A[16][16]= 0.000000
+
+ Performance counter stats for './LapG 2048 100':
+
+    32.326.527.341      cycles                    #    3,357 GHz                    
+     4.473.571.350      instructions              #    0,14  insns per cycle        
+       839.025.826      cache-misses              #   87,122 M/sec                  
+       9630,487009      task-clock (msec)         #    0,998 CPUs utilized          
+
+       9,649647143 seconds time elapsed
+
+*********
+** icc **
+*********
+
+Jacobi relaxation Calculation: 2048 x 2048 mesh, maximum of 100 iterations
+Total Iterations:   100, ERROR: 0.500000, A[16][16]= 0.000000
+
+ Performance counter stats for './LapI 2048 100':
+
+     2.486.363.712      cycles                    #    3,127 GHz                    
+     1.629.566.088      instructions              #    0,66  insns per cycle        
+        14.103.044      cache-misses              #   17,734 M/sec                  
+        795,248116      task-clock (msec)         #    0,995 CPUs utilized          
+
+       0,799201791 seconds time elapsed
+
 
