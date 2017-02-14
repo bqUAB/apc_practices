@@ -101,3 +101,39 @@ Total Iterations:   100, ERROR: 0.049207, A[16][16]= 0.000583
 
       21,642655480 seconds time elapsed
 
+***********************
+** Sqrt modification **
+***********************
+
+*********
+** gcc **
+*********
+
+Jacobi relaxation Calculation: 2048 x 2048 mesh, maximum of 100 iterations
+Total Iterations:   100, ERROR: 0.049206, A[16][16]= 0.000583
+
+ Performance counter stats for './LapSqrtG 2048 100':
+
+   100.500.541.466      cycles                    #    3,361 GHz                    
+    10.370.376.036      instructions              #    0,10  insns per cycle        
+     2.607.127.026      cache-misses              #   87,178 M/sec                  
+      29905,731829      task-clock (msec)         #    0,998 CPUs utilized          
+
+      29,961467256 seconds time elapsed
+
+*********
+** icc **
+*********
+Jacobi relaxation Calculation: 2048 x 2048 mesh, maximum of 100 iterations
+Total Iterations:   100, ERROR: 0.049207, A[16][16]= 0.000583
+
+ Performance counter stats for './LapSqrtI 2048 100':
+
+    70.663.309.553      cycles                    #    3,366 GHz                    
+     8.218.980.976      instructions              #    0,12  insns per cycle        
+     1.749.362.116      cache-misses              #   83,336 M/sec                  
+      20991,740387      task-clock (msec)         #    0,998 CPUs utilized          
+
+      21,032514669 seconds time elapsed
+
+
