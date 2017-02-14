@@ -62,3 +62,26 @@ Performance counter stats for './LapLoopI 2048 100':
       845.516.920      cache-misses              #   77,527 M/sec
      10906,142734      task-clock (msec)         #    0,998 CPUs utilized
      10,928344099 seconds time elapsed
+
+
+
+***************************
+** Division modification **
+***************************
+
+*********
+** gcc **
+*********
+
+Jacobi relaxation Calculation: 2048 x 2048 mesh, maximum of 100 iterations
+Total Iterations:   100, ERROR: 0.049206, A[16][16]= 0.000583
+
+ Performance counter stats for './LapStrenghtG 2048 100':
+
+   105.144.156.502      cycles                    #    3,342 GHz                    
+    11.526.252.864      instructions              #    0,11  insns per cycle        
+     2.606.702.327      cache-misses              #   82,853 M/sec                  
+      31461,770279      task-clock (msec)         #    0,998 CPUs utilized          
+
+      31,519730609 seconds time elapsed
+
