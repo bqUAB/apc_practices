@@ -28,8 +28,8 @@ float laplace_error (float *old, float *new, int n)
 {
   int i, j;
   float error=0.0f;
-  for ( j=1; j < n-1; j++ )
-    for ( i=1; i < n-1; i++ )
+  for ( i=1; i < n-1; i++ )
+    for ( j=1; j < n-1; j++ )
       error = max_error( error, old[j*n+i], new[j*n+i] );
   return error;
 }
@@ -37,8 +37,8 @@ float laplace_error (float *old, float *new, int n)
 void laplace_copy(float *in, float *out, int n)
 {
   int i, j;
-  for ( j=1; j < n-1; j++ )
-    for ( i=1; i < n-1; i++ )
+  for ( i=1; i < n-1; i++ )
+    for ( j=1; j < n-1; j++ )
       out[j*n+i]= in[j*n+i];
 }
 

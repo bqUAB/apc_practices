@@ -35,3 +35,30 @@ Total Iterations:   100, ERROR: 0.049207, A[16][16]= 0.000583
 
       21,635381932 seconds time elapsed
 
+***********************
+** Loop modification **
+***********************
+
+*********
+** gcc **
+*********
+Jacobi relaxation Calculation: 2048 x 2048 mesh, maximum of 100 iterations
+Total Iterations:   100, ERROR: 0.049207, A[16][16]= 0.000583
+Performance counter stats for './LapLoopG 2048 100':
+    67.137.897.881      cycles                    #    3,370 GHz
+    8.172.345.465      instructions              #    0,12  insns per cycle
+    1.675.812.340      cache-misses              #   84,125 M/sec
+     19920,465812      task-clock (msec)         #    0,998 CPUs utilized
+     19,959132940 seconds time elapsed
+
+*********
+** icc **
+*********
+Jacobi relaxation Calculation: 2048 x 2048 mesh, maximum of 100 iterations
+Total Iterations:   100, ERROR: 0.049207, A[16][16]= 0.000583
+Performance counter stats for './LapLoopI 2048 100':
+    36.660.821.448      cycles                    #    3,361 GHz
+    5.330.421.018      instructions              #    0,15  insns per cycle
+      845.516.920      cache-misses              #   77,527 M/sec
+     10906,142734      task-clock (msec)         #    0,998 CPUs utilized
+     10,928344099 seconds time elapsed
