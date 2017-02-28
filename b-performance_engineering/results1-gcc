@@ -1,0 +1,58 @@
+  9,65 │22b:   mov    -0x30(%rsp),%rax                                         
+  0,01 │       add    $0x1,%esi                                                
+       │       movups (%rax,%rdx,1),%xmm0                                      
+  0,89 │       mov    -0x38(%rsp),%rax                                         
+ 10,45 │       addps  (%rax,%rdx,1),%xmm0                                      
+  8,83 │       mov    -0x40(%rsp),%rax                                         
+  0,05 │       movups (%rax,%rdx,1),%xmm1                                      
+ 10,15 │       mov    -0x28(%rsp),%rax                                         
+  0,02 │       addps  %xmm1,%xmm0                                              
+  7,81 │       movups (%rax,%rdx,1),%xmm1                                      
+  3,08 │       addps  %xmm1,%xmm0                                              
+ 18,25 │       mulps  %xmm5,%xmm0                                              
+ 20,64 │       movups %xmm0,(%rdi,%rdx,1)                                      
+  6,55 │       add    $0x10,%rdx                                               
+  2,07 │       cmp    %esi,%ecx                                                
+  0,01 │     ↑ ja     22b
+
+
+  3,74 │       movss  0x10(%r8,%r12,4),%xmm3
+  0,70 │       addss  0x8(%r8,%r12,4),%xmm3
+  3,33 │       addss  0xc(%rdi,%r12,4),%xmm3
+  1,06 │       addss  0xc(%rdi,%r14,4),%xmm3
+  3,23 │       mulss  %xmm0,%xmm3
+  8,15 │       movss  %xmm3,0xc(%rax,%r12,4)
+  3,52 │       movss  0x14(%r8,%r12,4),%xmm4
+  0,25 │       addss  0xc(%r8,%r12,4),%xmm4
+  4,29 │       addss  0x10(%rdi,%r12,4),%xmm4
+  0,53 │       addss  0x10(%rdi,%r14,4),%xmm4
+  4,58 │       mulss  %xmm0,%xmm4
+ 13,89 │       movss  %xmm4,0x10(%rax,%r12,4)
+  4,10 │     ↑ jb     70
+
+
+
+
+ 22,33 │15d:┌─→movups (%r10,%r8,1),%xmm5
+ 10,90 │    │  add    $0x1,%r11d
+       │    │  movaps (%r15,%r8,1),%xmm1
+ 12,73 │    │  add    $0x10,%r8
+ 22,31 │    │  cmp    %r11d,%edx
+  0,27 │    │  subps  %xmm5,%xmm1
+  4,28 │    │  andps  %xmm4,%xmm1
+  2,40 │    │  maxps  %xmm1,%xmm0
+ 22,80 │    └──ja     15d
+
+
+ 12,06 │11b:┌─→movaps 0x4(%r13,%r14,4),%xmm1
+  9,91 │    │  subps  0x4(%r12,%r14,4),%xmm1
+ 15,09 │    │  andps  0x4a92(%rip),%xmm1        # 405b90 <_IO_stdin_used+0x10>
+  4,80 │    │  maxps  %xmm0,%xmm1
+ 10,50 │    │  movaps 0x14(%r13,%r14,4),%xmm0
+  0,54 │    │  subps  0x14(%r12,%r14,4),%xmm0
+  5,10 │    │  add    $0x8,%r14
+ 11,40 │    │  andps  0x4a78(%rip),%xmm0        # 405b90 <_IO_stdin_used+0x10>
+  1,43 │    │  cmp    %rbx,%r14
+       │    │  maxps  %xmm1,%xmm0
+ 25,70 │    └──jb     11b
+
